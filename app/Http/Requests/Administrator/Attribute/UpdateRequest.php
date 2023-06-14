@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'attribute_name'    => ['required'],
+        ];
+    }
+    /**
+     * Get the validation error messages.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'attribute_name.required' => 'Tên thuộc tính không được để trống !',
         ];
     }
 }

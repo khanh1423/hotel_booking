@@ -19,7 +19,6 @@ class Role extends Model
         'name',
         'description',
         'status',
-        'status',
         'locale',
         'deleted_at', 'created_at', 'updated_at',
     ];

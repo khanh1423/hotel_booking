@@ -53,8 +53,8 @@
                                     <form method="post" class="delete_form" action="{{ route('admin.user.destroy', $item->uuid) }}" id="studentForm_{{$item->id}}">
                                         {{ method_field('DELETE') }}
                                         {{  csrf_field() }}
-                                        <a class="dropdown-item" href="{{route('admin.user.edit', $item->uuid)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <button class="dropdown-item" type="submit"><i class="bx bx-trash me-1"></i> Delete</button>
+                                        <a class="dropdown-item" href="{{route('admin.user.edit', $item->uuid)}}"><i class="bx bx-edit-alt me-1"></i> Chỉnh sửa</a>
+                                        <button class="dropdown-item" type="submit"><i class="bx bx-trash me-1"></i> Xóa</button>
                                     </form>
                                 </div>
                             </div>

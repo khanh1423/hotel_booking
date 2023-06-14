@@ -32,6 +32,7 @@ class AttributeRepository extends BaseRepository implements AttributeRepositoryI
             'name' => $request->attribute_name,
             'locale'  => config('app.locale'),
             'user_id' => auth()->user()->id,
+            'parent_id' => $request->parent_id,
             'created_at' => new Datetime,
             'updated_at' => new Datetime
         ]);
@@ -52,14 +53,13 @@ class AttributeRepository extends BaseRepository implements AttributeRepositoryI
     }
 
     public function saveUpdate($request, $uuid){
-        if($request->has('status')){
-            $status = $request->status;
-        }else{
-            $status = 'off';
-        }
         $Attribute = $this->getAllbyUUID($uuid)->first();
         $data = $Attribute->update([
-           
+            'name' => $request->attribute_name,
+            'locale'  => config('app.locale'),
+            'user_id' => auth()->user()->id,
+            'parent_id' => $request->parent_id,
+            'updated_at' => new Datetime
         ]);
         
         return $data;
@@ -69,5 +69,11 @@ class AttributeRepository extends BaseRepository implements AttributeRepositoryI
         $Attribute = $this->getAllbyUUID($uuid)->first();
 
         return $Attribute->delete();
+    }
+
+    public function getchildren(){
+        $data = $this->model->with('children')->whereNull('parent_id')->get();
+
+        return $data;
     }
 }

@@ -3,23 +3,19 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Administrator\Attribute\StoreRequest;
-use App\Http\Requests\Administrator\Attribute\UpdateRequest;
-use App\Repositories\Attribute\AttributeRepositoryInterface;
+use App\Repositories\RoomType\RoomTypeRepositoryInterface;
+use App\Http\Requests\Administrator\RoomType\StoreRequest;
+use App\Http\Requests\Administrator\RoomType\UpdateRequest;
 use Illuminate\Http\Request;
 
-class AttributeController extends Controller
+class RoomTypeController extends Controller
 {
-    private $view   = 'administrator.modules.attribute.';
-    private $route = 'admin.attribute.';
-    protected $attributes;
+    private $view   = 'administrator.modules.roomtype.';
+    private $route = 'admin.roomtype.';
+    protected $roomtypes;
 
-    public function __construct(AttributeRepositoryInterface $attributeRepositoryInterface){
-        $this->attributes = $attributeRepositoryInterface;
-        
-        // if(!Auth::user()->level == 2 || Auth::user()->level == 3){
-        //     re
-        // }
+    public function __construct(RoomTypeRepositoryInterface $roomTypeRepositoryInterface){
+        $this->roomtypes = $roomTypeRepositoryInterface;
     }
     /**
      * Display a listing of the resource.
@@ -28,8 +24,7 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $data = $this->attributes->getchildren();
-        
+        $data = $this->roomtypes->getchildren();
         return view($this->view . 'index', compact('data'));
     }
 
@@ -40,8 +35,8 @@ class AttributeController extends Controller
      */
     public function create()
     {
-        $attribute  = $this->attributes->getAll();
-        return view($this->view . 'create', compact('attribute'));
+        $roomtype   = $this->roomtypes->getAll()->where('id', '!=', 1)->where('parent_id', 1);
+        return view($this->view . 'create', compact('roomtype'));
     }
 
     /**
@@ -52,66 +47,66 @@ class AttributeController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $data = $this->attributes->saveStore($request);
+        $this->roomtypes->saveStore($request);
 
         return redirect()->route($this->route . 'index')
         ->with('success','Chúc mừng!')
-        ->with('nofitication','Thêm thuộc tính thành công!');
-
+        ->with('nofitication','Thêm loại phòng thành công!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $uuid
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $data = $this->attributes->getAll();
-
-        return $data;
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $uuid
+     * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
     public function edit($uuid)
     {
-        $attribute  = $this->attributes->getAll();
-        $data       = $this->attributes->getAllbyUUID($uuid)->first();
-        return view($this->view . 'edit', compact('attribute', 'data'));
+        $data = $this->roomtypes->getAllbyUUID($uuid)->first();
+        $roomtype   = $this->roomtypes->getAll()->where('id', '!=', 1)->where('parent_id', 1);
+
+        return view($this->view . 'edit', compact('data', 'roomtype'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $uuid
+     * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateRequest $request, $uuid)
     {
-        $data = $this->attributes->saveUpdate($request, $uuid);
+        $data = $this->roomtypes->saveUpdate($request, $uuid);
+        
         return redirect()->route($this->route . 'index')
         ->with('success','Chúc mừng!')
-        ->with('nofitication','Sửa thuộc tính thành công!');
+        ->with('nofitication','Sửa loại phòng thành công!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $uuid
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($uuid)
     {
-        $data = $this->attributes->deletedbyUUID($uuid);
+        $this->roomtypes->deletedbyUUID($uuid);
+
         return redirect()->route($this->route . 'index')
         ->with('success','Chúc mừng!')
-        ->with('nofitication','Xóa thuộc tính thành công!');
+        ->with('nofitication','Xóa loại phòng thành công!');
     }
 }

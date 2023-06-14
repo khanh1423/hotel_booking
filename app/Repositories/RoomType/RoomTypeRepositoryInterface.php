@@ -1,12 +1,12 @@
 <?php
-namespace App\Repositories\Attribute;
+namespace App\Repositories\RoomType;
 
 use App\Repositories\RepositoryInterface;
 
-interface AttributeRepositoryInterface extends RepositoryInterface
+interface RoomTypeRepositoryInterface extends RepositoryInterface
 {
     //lấy model
-    public function attributeModel();
+    public function roomTypeModel();
     public function saveStore($requet);
     public function getAll();
     public function getAllbyUUID($uuid);

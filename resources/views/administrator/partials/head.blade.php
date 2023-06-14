@@ -39,3 +39,9 @@ rel="stylesheet"
 <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
 <script src="{{ asset('administrator/assets/js/config.js')}}"></script>
 
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+    BASE_URL = "<?php echo url(''); ?>";
+</script>

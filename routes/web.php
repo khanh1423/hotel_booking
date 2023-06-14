@@ -19,3 +19,5 @@ Route::namespace('Pages')->group(function(){
     Route::get('/', 'HomePageController@index')->name('homePage');
 
 });
+
+Route::get('/api', 'Administrator\AttributeController@show')->name('api');

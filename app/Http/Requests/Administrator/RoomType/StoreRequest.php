@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Administrator\Attribute;
+namespace App\Http\Requests\Administrator\RoomType;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,9 +24,11 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'attribute_name'    => ['required', 'unique:attributes,name'],
+            'roomtype_name' => ['required', 'unique:roles,name'],
+            'roomtype_note' => ['required'],
         ];
     }
+
     /**
      * Get the validation error messages.
      *
@@ -35,8 +37,9 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'attribute_name.required' => 'Tên thuộc tính không được để trống !',
-            'attribute_name.unique'   => 'Tên thuộc tính này đã tồn tại !',
+            'roomtype_name.required' => 'Trường tên loại phòng không được để trống!', 
+            'roomtype_name.unique'   => 'Trường tên loại phòng bị trùng!',
+            'roomtype_note.required' => 'Trường mô tả không được để trống!', 
         ];
     }
 }

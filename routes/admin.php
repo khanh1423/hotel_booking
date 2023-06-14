@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('check_login')->group(function () {
     Route::get('/', 'DashboardController@index')->name('index');
     Route::resource('attribute', 'AttributeController');
+    Route::resource('roomtype', 'RoomTypeController');
+    Route::resource('room', 'RoomController');
     Route::resource('role', 'RoleController');
     Route::resource('user', 'UserController');
 });

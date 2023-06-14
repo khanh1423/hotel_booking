@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class RoomImage extends Model
 {
     use HasFactory;
+
+    protected $table = 'room_images';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'image',
+        'alt',
+        'position',
+        'room_id',
+        'deleted_at'
+    ];
 }

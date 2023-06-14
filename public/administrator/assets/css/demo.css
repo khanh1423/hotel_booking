@@ -105,3 +105,11 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+#addAttribute {
+  font-size: 2rem !important;
+}
+
+#removeAttribute{
+  font-size: 2rem !important;
+}

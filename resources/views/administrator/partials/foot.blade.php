@@ -7,6 +7,7 @@
 >
 </div>
 
+
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
 <script src="{{ asset('administrator/assets/vendor/libs/jquery/jquery.js')}}"></script>
@@ -30,6 +31,9 @@
 <!-- Custom JS -->
 
 <script src="{{ asset('administrator/js/custom.js')}}"></script> <!-- File nhúng ở đây !!!!!!!!!!-->
+{{-- <script src="{{ asset('administrator/js/treemenu.js')}}"></script> <!-- File nhúng ở đây !!!!!!!!!!--> --}}
 
 <!-- Custom JS -->
- 
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>

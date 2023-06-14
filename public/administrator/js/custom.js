@@ -35,3 +35,18 @@ function previewFile(file){
 // var $$ = document.querySelector.bind(document);
 // console.log($$(".image-preview"))
 
+
+// Tree Menu.innerHTML.innerHTML
+
+var clickCount = 0;
+var htmlContent;
+function AddAttributes(){
+    clickCount++;
+    if(clickCount == 1){
+        htmlContent = document.getElementById('navs-top-profile').innerHTML;
+    }
+    
+    var addBefore = document.getElementById('attributePlus');
+
+    addBefore.insertAdjacentHTML('afterend', htmlContent);
+}
