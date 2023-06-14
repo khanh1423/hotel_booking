@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administrator\Room\StoreRequest;
 use App\Repositories\Room\RoomRepositoryInterface;
 use App\Repositories\Attribute\AttributeRepositoryInterface;
 use App\Repositories\RoomType\RoomTypeRepositoryInterface;
@@ -52,9 +53,13 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        dd($request->all());
+        $data = $this->rooms->saveStore($request);
+
+        return redirect()->route($this->route . 'index')
+        ->with('success','Chúc mừng!')
+        ->with('nofitication','Thêm phòng thành công!');
     }
 
     /**

@@ -20,6 +20,6 @@ class RoomImage extends Model
         'alt',
         'position',
         'room_id',
-        'deleted_at'
+        'deleted_at', 'created_at', 'updated_at',
     ];
 }

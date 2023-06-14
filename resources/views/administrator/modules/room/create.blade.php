@@ -38,7 +38,11 @@
                             </label>
                             <p class="text-muted mb-0">Ảnh phòng JPG, GIF hoặc PNG.</p>
                             </div>
-                        </div><br>
+                        </div>
+                        @if ($errors->has('room_image'))
+                            <small class="text-danger form-text"><Table>{{$errors->first('room_image')}}</Table></small>
+                        @endif
+                        <br>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Tên Phòng</label>
                             <input type="text" class="form-control" name="room_name" value="{{ old('room_name') }}" id="basic-default-fullname" placeholder="ví dụ: Phòng có ban công chill chill,..." />
@@ -49,9 +53,6 @@
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Giá Phòng</label>
                             <input type="text" class="form-control" name="room_price" value="{{ old('room_price') }}" placeholder="Giá phòng / ngày" />
-                            @if ($errors->has('room_price'))
-                            <small class="text-danger form-text"><Table>{{$errors->first('room_price')}}</Table></small>
-                            @endif
                         </div>
                         <div class="md-3">
                             <label class="form-label" for="selectTypeOpt">Loại phòng</label>
@@ -60,7 +61,7 @@
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
-                            </div>
+                        </div><br>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-message">Mô tả</label>
                             <textarea
@@ -75,7 +76,7 @@
                             @endif
                         </div>
                         <div class="mb-3 col-md-6">
-                            <input class="form-check-input" type="checkbox" name="user_status" checked>
+                            <input class="form-check-input" type="checkbox" name="room_status" checked>
                             <label class="form-check-label">Trạng thái</label>
                         </div>
                     </div>
@@ -84,6 +85,7 @@
                             <div class="col-md-3">
                             <label class="form-label" for="selectTypeOpt">Thuộc tính</label>
                             <select id="selectTypeOpt" name="attribute_id[]" class="form-select color-dropdown">
+                                {{-- <option>Chọn thuộc tính</option> --}}
                                 @foreach($attrbutes as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach

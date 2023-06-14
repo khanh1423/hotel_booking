@@ -22,7 +22,7 @@ class Room extends Model
         'description',
         'slug',
         'status',
-        'locale', 'user_id',
+        'locale', 'user_id', 'roomtype_id',
         'deleted_at', 'created_at', 'updated_at',
     ];
 
