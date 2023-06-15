@@ -38,15 +38,26 @@ function previewFile(file){
 
 // Tree Menu.innerHTML.innerHTML
 
-var clickCount = 0;
+
+// room tabs attribute
+var clickAdd = 0;
 var htmlContent;
 function AddAttributes(){
-    clickCount++;
-    if(clickCount == 1){
+    clickAdd++;
+    if(clickAdd == 1){
         htmlContent = document.getElementById('navs-top-profile').innerHTML;
     }
-    
     var addBefore = document.getElementById('attributePlus');
+    addBefore.insertAdjacentHTML('beforebegin', htmlContent);
+}
 
-    addBefore.insertAdjacentHTML('afterend', htmlContent);
+var clickRemove = 0;
+function removeAttributes($value){
+    if(clickAdd > clickRemove){
+        clickRemove++;
+        var card = $value.parentNode;
+        var col = card.parentNode;
+        var row = col.parentNode;
+        row.remove();
+    }
 }

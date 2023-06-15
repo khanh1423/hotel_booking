@@ -80,12 +80,12 @@
                             <label class="form-check-label">Trạng thái</label>
                         </div>
                     </div>
+                    
                     <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
                         <div class="row gx-3 gy-2 align-items-center" id="attributePlus">
                             <div class="col-md-3">
                             <label class="form-label" for="selectTypeOpt">Thuộc tính</label>
                             <select id="selectTypeOpt" name="attribute_id[]" class="form-select color-dropdown">
-                                {{-- <option>Chọn thuộc tính</option> --}}
                                 @foreach($attrbutes as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
@@ -99,7 +99,7 @@
                                 <label class="form-label" for="showToastPlacement">&nbsp;</label>
                                 <div class="card-body">
                                     <i class='bx bx-plus-circle text-primary' id="addAttribute" onclick="AddAttributes()"></i>
-                                    <i class='bx bx-x-circle text-danger' id="removeAttribute"></i>
+                                    <i class='bx bx-x-circle text-danger' id="removeAttribute" onclick="removeAttributes(this)"></i>
                                 </div>
 
                             </div>
@@ -107,7 +107,7 @@
                     </div>
                     
                     <div class="tab-pane fade" id="navs-top-messages" role="tabpanel">
-                        <div class="row gx-3 gy-2 align-items-center" id="attributePlus">
+                        <div class="row gx-3 gy-2 align-items-center">
                             <div class="col-md-3">
                                 <input type="file" name="images_room[]" multiple>
                                 {{-- <img src="{{asset('upload/rooms/room-no.jpg')}}" class="d-block rounded" height="100" width="100" >
